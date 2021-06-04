@@ -4,7 +4,7 @@ NAME = minitalk.a
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS  =   srcs/client/client.c srcs/server/server.c
+SRCS  =   srcs/client/client.c srcs/server/server.c srcs/utils/utils.c
 
 
 RM	= rm -f
@@ -21,7 +21,7 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 	@echo "compile minitalk.a"
 	@$(CC) srcs/server/server.c -o server minitalk.a
-	@$(CC) srcs/client/client.c -o client minitalk.a
+	@$(CC) -g -fsanitize=address srcs/client/client.c -o client minitalk.a
 clean:
 	$(RM) $(OBJS)
 
