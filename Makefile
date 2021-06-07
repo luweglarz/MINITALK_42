@@ -27,6 +27,7 @@ clean:
 
 fclean:	clean
 	$(RM) $(NAME)
-	$(RM) push_swap
+	$(RM) server
+	$(RM) client
 
 re: fclean all
