@@ -6,48 +6,48 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 22:11:42 by user42            #+#    #+#             */
-/*   Updated: 2021/06/04 19:21:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/07 17:06:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minitalk.h"
 
-int main(int ac, char **av)
+void	send_signals(char *binary, pid_t server_pid)
 {
-    if (ac == 3)
-    {
-        pid_t   serverpid;
-        char    *binary;
-        int     i;
+	int		i;
 
-        serverpid = ft_atoi(av[1]);
-        binary = str_to_binary(av[2]);
-        i = 0;
-        int ret =0;
-        printf("%s\n", binary);
-        while (binary[i])
-        {
-            if (binary[i] == '0')
-                if ((serverpid, SIGUSR1) == -1)
-                {
-                    ft_putstr_fd(1, "Failed to send the signal");
-                    exit(-1);
-                }
-            printf("ret 1 %d\n", ret);
-            if (binary[i] == '1')
-                if ((serverpid, SIGUSR1) == -1)
-                {
-                    ft_putstr_fd(1, "Failed to send the signal");
-                    exit(-1);
-                }
-                printf("ret 2 %d\n", ret);
-            i++;
-        }
+	i = 0;
+	while (binary[i])
+	{
+		if (binary[i] == '0')
+		{
+			if (kill(server_pid, SIGUSR1) == -1)
+				error(ERRSIGNAL1, binary);
+		}
+		if (binary[i] == '1')
+		{
+			if (kill(server_pid, SIGUSR2) == -1)
+				error(ERRSIGNAL1, binary);
+		}
+		i++;
+	}
+	free(binary);
+}
 
-    }
-    else
-    {
-        ft_putstr_fd(1, "First parameter must be a server PID");
-        ft_putstr_fd(1, "Seconde parameter must be the message you want to send to the server");
-    }
+int	main(int ac, char **av)
+{
+	pid_t	server_pid;
+	char	*binary;
+
+	if (ac == 3)
+	{
+		server_pid = ft_atoi(av[1]);
+		binary = str_to_binary(av[2]);
+		send_signals(binary, server_pid);
+	}
+	else
+	{
+		printf("First parameter must be a server PID");
+		printf("Second parameter must be the message you want to send");
+	}
 }

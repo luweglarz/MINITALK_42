@@ -4,7 +4,7 @@ NAME = minitalk.a
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS  =   srcs/client/client.c srcs/server/server.c srcs/utils/utils.c
+SRCS  =   srcs/client/client.c srcs/server/server.c srcs/utils/utils.c srcs/utils/error.c
 
 
 RM	= rm -f
