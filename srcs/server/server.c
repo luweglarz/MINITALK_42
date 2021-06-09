@@ -49,5 +49,5 @@ int	main(void)
 		error(ERRSIGNAL2, NULL);
 	printf("Server pid: %d\n", getpid());
 	while (1)
-		pause();
+		usleep(1000);
 }

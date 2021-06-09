@@ -52,6 +52,8 @@ char	*str_to_binary(char *s)
 	char	*binary;
 
 	binary = malloc(sizeof(char) * (ft_strlen(s) * 8 + 8 + 1));
+	if (binary == NULL)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (s[i])
