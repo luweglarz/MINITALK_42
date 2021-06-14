@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 15:00:18 by user42            #+#    #+#             */
-/*   Updated: 2021/06/07 20:25:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/14 13:22:18 by lweglarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ char	*str_to_binary(char *s)
 	binary = malloc(sizeof(char) * (ft_strlen(s) * 8 + 8 + 1));
 	if (binary == NULL)
 		return (NULL);
-	i = 0;
+	i = -1;
 	j = 0;
-	while (s[i])
+	while (i++ < ft_strlen(s))
 	{
 		k = 8;
 		while (k != 0)
@@ -66,7 +66,9 @@ char	*str_to_binary(char *s)
 			else
 				binary[j++] = '0';
 		}
-		i++;
 	}
+	while (j < ft_strlen(s) * 8 + 8)
+		binary[j++] = '0';
+	binary[j] = '\0';
 	return (binary);
 }

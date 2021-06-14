@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 22:11:45 by user42            #+#    #+#             */
-/*   Updated: 2021/06/07 19:38:20 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/14 13:23:20 by lweglarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ int	main(void)
 		error(ERRSIGNAL2, NULL);
 	printf("Server pid: %d\n", getpid());
 	while (1)
-		usleep(1000);
+		pause();
 }

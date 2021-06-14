@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 22:11:42 by user42            #+#    #+#             */
-/*   Updated: 2021/06/07 20:29:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/06/14 13:22:44 by lweglarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	send_signals(char *binary, pid_t server_pid)
 	i = 0;
 	while (binary[i])
 	{
+		usleep(50);
 		if (binary[i] == '0')
 		{
 			if (kill(server_pid, SIGUSR1) == -1)
@@ -38,19 +39,11 @@ int	main(int ac, char **av)
 {
 	pid_t	server_pid;
 	char	*binary;
-	int		zero;
 
 	if (ac == 3)
 	{
 		server_pid = ft_atoi(av[1]);
 		binary = str_to_binary(av[2]);
-		zero = ft_strlen(binary) - 9;
-		while (zero < (ft_strlen(binary)) - 1)
-		{
-			binary[zero] = '0';
-			zero++;
-		}
-		binary[zero] = '\0';
 		send_signals(binary, server_pid);
 	}
 	else
