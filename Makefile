@@ -21,7 +21,7 @@ $(NAME): $(OBJS)
 	@ranlib $(NAME)
 	@echo "compile minitalk.a"
 	@$(CC) srcs/server/server.c -o server minitalk.a
-	@$(CC) -g -fsanitize=address srcs/client/client.c -o client minitalk.a
+	@$(CC) srcs/client/client.c -o client minitalk.a
 clean:
 	$(RM) $(OBJS)
 
